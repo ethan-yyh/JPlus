@@ -1,7 +1,7 @@
 // import files
 import React, { Component } from 'react';
-import NavBar from '../NavBar/NavBar.js';
-import Footer from '../Footer/Footer.js';
+import NavBar from '../components/NavBar.js';
+import Footer from '../components/Footer.js';
 import './Home.css';
 
 class Home extends Component{

@@ -1,6 +1,5 @@
-import './App.css';
 import { Route } from "react-router-dom"; // for multi page application
-import Home from './Home/Home.js';
+import Home from './pages/Home.js';
 //import Resume from './Resume/Resume.js';
 import React, { Component } from 'react';
 import 'bootswatch/dist/litera/bootstrap.min.css';
