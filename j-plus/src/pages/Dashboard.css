@@ -1,0 +1,25 @@
+#greeting{
+    margin-top: 10%;
+    font-size: 70px;
+}
+
+#test{
+    border: 1px solid #73AD21;
+    border-radius: 25px;
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+#keyword{
+   padding-top: 5px;
+   padding-left: 10px;
+   padding-right: 10px;
+   padding-bottom: 5px;
+   margin-bottom: 0px;
+}
+
+#message{
+    margin-bottom: 3%;
+    font-size: 20px;
+}

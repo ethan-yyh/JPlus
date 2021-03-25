@@ -5,7 +5,7 @@ class Footer extends Component{
     render(){
         return(
             <div id="footer">
-                <p id="copyright"><small>J+ Copyrighted</small></p>
+                <p id="copyright" className="lead">J+ Copyrighted</p>
             </div>
         );
     }
