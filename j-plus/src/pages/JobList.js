@@ -76,7 +76,7 @@ class Dashboard extends Component{
                             <JobCard job={job.job}/>
                         </React.Fragment>
                     )}
-                    
+                    <small>Imformation are retrieved from Indeed</small>
                     <hr className="my-4"></hr>
                     
                 </div>
