@@ -2,3 +2,9 @@
     font-weight: bold;
     margin: 10px;
 }
+
+.navbar{
+    position: sticky;
+}
+
+

@@ -21,18 +21,36 @@ class Keyword extends Component{
     }
     render(){
 
-        if (this.state.show){
-            return(
-                <div className="keyword" id={this.props.keyword}>
-                    <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
-                        <button type="button" className="btn btn-outline-primary" id="keyword-btn" disabled>{this.props.keyword}</button>
-                        <button type="button" className="btn btn-outline-danger" onClick={this.hideComponent}>x</button>
+        // add blue label for skill keyword
+        if(this.props.type === "skill"){
+
+            if (this.state.show){
+                return(
+                    <div className="keyword" id={this.props.keyword}>
+                        <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
+                            <button type="button" className="btn btn-outline-primary" id="keyword-btn" disabled>{this.props.keyword}</button>
+                            <button type="button" className="btn btn-outline-danger" onClick={this.hideComponent}>x</button>
+                        </div>
+                        
                     </div>
-                    
-                </div>
-            );
-        } else if (!this.state.show){
-            return(<div></div>);
+                );
+            } else if (!this.state.show){
+                return(<div></div>);
+            }
+        } else if (this.props.type === "location"){ // add dark blue label for location keyword
+            if (this.state.show){
+                return(
+                    <div className="keyword" id={this.props.keyword}>
+                        <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
+                            <button type="button" className="btn btn-outline-primary" id="keyword-btn" disabled>{this.props.keyword}</button>
+                            <button type="button" className="btn btn-outline-danger" onClick={this.hideComponent}>x</button>
+                        </div>
+                        
+                    </div>
+                );
+            } else if (!this.state.show){
+                return(<div></div>);
+            }
         }
         
     }

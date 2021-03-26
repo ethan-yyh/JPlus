@@ -15,7 +15,7 @@ class NavBar extends Component{
                                 <a className="nav-link" href='localhost:3000/'>Dashboard</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href='localhost:3000/'>Resume</a>
+                                <a className="nav-link" href='localhost:3000/'>Jobs</a>
                             </li>
                         </ul>
                         <button className="btn btn-primary disabled my-2 my-sm-0">Logged in</button>
