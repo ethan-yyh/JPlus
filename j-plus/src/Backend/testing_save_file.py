@@ -1,8 +1,8 @@
 #!C:/xampp/python/python.exe
-#!/usr/bin/python
+
 import cgi
 import cgitb
-import os
+# import os
 
 cgitb.enable()
 
@@ -31,5 +31,14 @@ Content-Type: text/html\n
 </body>
 </html>
 """ % (message,))
-# implement the rest to get file and its name
-# make sure to include extension ex. resume.pdf
+# # implement the rest to get file and its name
+# # make sure to include extension ex. resume.pdf
+# print("Content-type:text/html\n")
+# print("<html>")
+# print("<head>")
+# print("<title>Sum by Python CGI</title>")
+# print("</head>")
+# print("<body>")
+# print("<h2>Heloo </h2>")
+# print("</body>")
+# print("</html>")
