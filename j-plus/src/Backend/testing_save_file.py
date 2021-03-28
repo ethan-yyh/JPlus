@@ -2,7 +2,7 @@
 
 import cgi
 import cgitb
-# import os
+import os
 
 cgitb.enable()
 
@@ -10,35 +10,40 @@ cgitb.enable()
 form = cgi.FieldStorage()
 
 # Get filename here.
-fileitem = form['filename']
-print(fileitem)
-# Test if the file was uploaded
+fileitem = form["file"]
+
+print("Content-type:text/html\n")
+print("<html>")
+print("<head>")
+print("<title>Sum by Python CGI</title>")
+print("</head>")
+print("<body>")
+
 if fileitem.filename:
-   # strip leading path from file name to avoid
+#    strip leading path from file name to avoid
    # directory traversal attacks
    fn = os.path.basename(fileitem.filename)
    open('/tmp/' + fn, 'wb').write(fileitem.file.read())
    message = 'The file "' + fn + '" was uploaded successfully'
- 
 else:
    message = 'No file was uploaded'
+
+print(message)
+
+print("<h2>Heloo </h2>")
+# print(fileitem.filename)
+print("</body>")
+print("</html>")
+
  
-print ("""\
-Content-Type: text/html\n
-<html>
-<body>
-   <p>%s</p>
-</body>
-</html>
-""" % (message,))
+# print ("""\
+# Content-Type: text/html\n
+# <html>
+# <body>
+#    <p>%s</p>
+# </body>
+# </html>
+# """ % (message,))
 # # implement the rest to get file and its name
 # # make sure to include extension ex. resume.pdf
-# print("Content-type:text/html\n")
-# print("<html>")
-# print("<head>")
-# print("<title>Sum by Python CGI</title>")
-# print("</head>")
-# print("<body>")
-# print("<h2>Heloo </h2>")
-# print("</body>")
-# print("</html>")
+
