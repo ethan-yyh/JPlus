@@ -65,7 +65,7 @@ class Dashboard extends Component{
 
         return(
             <div>
-                <NavBar/>
+                <NavBar page="joblist"/>
                 <div className="container">
                     <h1 id="greeting">Hey {user}, we found these for you!</h1>
                     <hr className="my-4"></hr>

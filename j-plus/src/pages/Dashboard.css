@@ -3,6 +3,10 @@
     font-size: 70px;
 }
 
+#search-job-button{
+    display: inline-block;
+}
+
 #test{
     border: 1px solid #73AD21;
     border-radius: 25px;

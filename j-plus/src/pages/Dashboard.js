@@ -1,5 +1,6 @@
 // import files
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import NavBar from '../components/NavBar.js';
 import Footer from '../components/Footer.js';
 import Keyword from '../components/Keyword.js';
@@ -21,7 +22,7 @@ class Dashboard extends Component{
 
         return(
             <div>
-                <NavBar/>
+                <NavBar page="dashboard"/>
                 <div className="container">
                     <h1 id="greeting-lg">Welcome back, {user}!</h1>
                     <hr className="my-4"></hr>

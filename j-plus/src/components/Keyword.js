@@ -35,7 +35,7 @@ class Keyword extends Component{
                     </div>
                 );
             } else if (!this.state.show){
-                return(<div></div>);
+                return(<div id="hidden"></div>);
             }
         } else if (this.props.type === "location"){ // add dark blue label for location keyword
             if (this.state.show){
@@ -49,7 +49,7 @@ class Keyword extends Component{
                     </div>
                 );
             } else if (!this.state.show){
-                return(<div></div>);
+                return(<div id="hidden"></div>);
             }
         }
         
