@@ -14,7 +14,7 @@ class About extends Component{
                     <h1 id="greeting-lg">About J+</h1>
                     <hr className="my-4"></hr>
                     <p>{description}</p>
-                    <h1 id="greeting-lg">Contributors</h1>
+                    <h1 id="greeting">Contributors</h1>
                     <hr className="my-4"></hr>
 
                     <div className="card" id="contributor-card">
