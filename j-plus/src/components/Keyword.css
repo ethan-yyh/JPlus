@@ -1,0 +1,10 @@
+.keyword{
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#hidden{
+    display: inline-block;
+}
+

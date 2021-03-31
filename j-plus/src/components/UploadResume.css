@@ -1,0 +1,14 @@
+#select-file-btn{
+    display: none;
+
+}
+
+#select-file-btn-label{
+    margin-bottom: 0px;
+    margin-right: 10px;
+}
+
+#file-name{
+    margin-top: 10px;
+    margin-bottom: 50px;
+}

@@ -1,0 +1,12 @@
+#logo{
+    font-weight: bold;
+    font-size: 30px;
+    margin: 20px;
+    margin-right: 50px;
+}
+
+.navbar{
+    position: sticky;
+}
+
+

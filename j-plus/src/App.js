@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route } from "react-router-dom"; // for multi page application
+import Home from './pages/Home.js';
+//import Resume from './Resume/Resume.js';
+import React, { Component } from 'react';
+import 'bootswatch/dist/litera/bootstrap.min.css';
+import Dashboard from "./pages/Dashboard.js";
+import JobList from "./pages/JobList.js";
+import Register from "./pages/Register.js";
+import Login from "./pages/Login.js";
+import About from "./pages/About.js"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render(){
+    return (
+      <div className="App">
+        <Route exact path="/" component={Home}/>
+        <Route exact path="/register" component={Register}/>
+        <Route exact path="/login" component={Login}/>
+        <Route exact path="/dashboard" component={Dashboard}/>
+        <Route exact path="/joblist" component={JobList}/>
+        <Route exact path="/about" component={About}/>
+
+      </div>
+    );
+  } // end of render
 }
 
 export default App;

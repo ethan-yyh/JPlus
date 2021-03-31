@@ -1,0 +1,29 @@
+#login-title{
+    font-size: 50px;
+}
+
+.login-container{
+    margin-top: 8%;
+    width: 30%;
+    margin-bottom: 8%;
+}
+
+.copyright{
+    text-align: center;
+    width: 100%;
+    left: 0px;
+    right: 0px;
+}
+
+#login-btn{
+    width: 48%;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+#register-btn{
+    margin-right: 2%;
+    width: 48%;
+    display: inline-block;
+    margin-top: 20px;
+}
