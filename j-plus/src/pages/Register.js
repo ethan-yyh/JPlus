@@ -4,6 +4,21 @@ import NavBar from '../components/NavBar';
 import './css/Register.css'
 
 class Register extends Component{
+
+    constructor(){
+        super()
+    }
+
+    checkUsername(){
+
+        var username = document.getElementById('username').value
+        console.log(username)
+
+        fetch(`http://localhost:9000/checkUsernameAPI?username=${username}`)
+            .then(response => console.log(response.json()));
+        
+
+    }
     render(){
         return(
             <div>
@@ -13,15 +28,15 @@ class Register extends Component{
                     <hr className="my-4"></hr>
                     <form>
                         <div className="form-group">
-                            <label for="firstname">First Name</label>
+                            <label>First Name</label>
                             <input className="form-control" id="firstname" placeholder="Enter your first name"></input>
                         </div>
                         <div className="form-group">
-                            <label for="lastname">Last Name</label>
+                            <label>Last Name</label>
                             <input className="form-control" id="lastname" placeholder="Enter your last name"></input>
                         </div>
                         <div className="form-group">
-                            <label for="username">Username</label>
+                            <label>Username</label>
                             <input className="form-control" id="username" placeholder="Choose a username"></input>
                             <small className="form-text text-muted">This username will be used to login in the future.</small> 
                         </div>
@@ -30,7 +45,7 @@ class Register extends Component{
                             <input type="password" className="form-control" id="username" placeholder="Choose a password"></input>
                         </div>
                         <Link to={`/login`} className="btn btn-outline-primary" id="login-btn">Login</Link>
-                        <button type="submit" className="btn btn-primary" id="submit-btn" disabled>Register</button>
+                        <button type="submit" className="btn btn-primary" id="submit-btn" onClick={this.checkUsername}>Register</button>
                         
                         
                     </form>

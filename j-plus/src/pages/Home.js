@@ -22,7 +22,6 @@ class Home extends Component{
                     <hr className="my-4"></hr>
                     <Link to={`/register`} type="button" class="btn btn-outline-primary btn-lg" id="get-started">Get Started</Link>
                 </div>
-                <Footer/>
                 
             </div>
         );
