@@ -18,10 +18,6 @@ class Register extends Component{
         event.preventDefault();
         var username = document.getElementById('username').value
 
-        
-
-        console.log(username)
-
 
         // false -> user does not exist in database
         // true -> user exists in the database, ask for a new username
@@ -42,14 +38,17 @@ class Register extends Component{
             var password = document.getElementById('password').value
 
             var req = {
-                firstname: firstname,
-                lastname: lastname,
-                username: username,
-                password: password
+                "firstname": firstname,
+                "lastname": lastname,
+                "username": username,
+                "password": password
             }
 
             fetch('http://localhost:9000/registerAPI', {
                 method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify(req)
             })
             .then(response => response.json())
