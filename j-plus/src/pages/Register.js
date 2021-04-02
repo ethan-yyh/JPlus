@@ -28,12 +28,12 @@ class Register extends Component{
         fetch(`http://localhost:9000/checkUsernameAPI?username=${username}`)
             .then(response => response.json())
             .then(data => {this.setState({
-                username: data
+                username: data["userNameExist"]
             });});
 
         // username not available
         if(this.state.username == true){
-            console.log('true');
+            console.log('username invalid');
         } else if (this.state.username == false){ // username is available
             console.log('username is valid');
 
