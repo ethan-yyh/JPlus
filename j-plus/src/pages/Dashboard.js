@@ -15,7 +15,7 @@ class Dashboard extends Component{
         super()
         this.state = {
             username: props.match.params.username,
-            keywords: ["JavaScript","Python", "React", "Java", "Machine Learning", "C", "C++", "Cloud Computing"]
+            skills: ["JavaScript","Python", "React", "Java", "Machine Learning", "C", "C++", "Cloud Computing"]
         }
 
         this.updateKeywords = this.updateKeywords.bind(this)
@@ -29,7 +29,7 @@ class Dashboard extends Component{
         event.preventDefault();
 
         var req = {
-            "keywords": this.state.keywords,
+            "skills": this.state.keywords,
             "username": "test"
         }
 
