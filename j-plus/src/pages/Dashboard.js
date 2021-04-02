@@ -10,9 +10,16 @@ import './css/Dashboard.css';
 
 class Dashboard extends Component{
 
+    constructor(props){
+        super()
+        this.state = {
+            username: props.match.params.username
+        }
+    }
+
     render(){
 
-        var user = "Ethan";
+        var user = this.state.username
         var message = "These are they skills we captured based on your most recent resume. You can delete the ones that you think are not accurate.";
         var message2 = "Have some new skills? No worries, we got you. Add your new skills below."
         var message3 = "Let us know which locations you are interested in."

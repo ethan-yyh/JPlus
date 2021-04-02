@@ -13,7 +13,6 @@ class Footer extends Component{
             keywords: []
         };
 
-        var keywords = []
         this.addKeyword = this.addKeyword.bind(this);
         this.handleKeywordChange = this.handleKeywordChange.bind(this)
 
@@ -29,7 +28,7 @@ class Footer extends Component{
         
         var keywords = this.state.keywords;
 
-        if (this.state.newKeyword != ""){
+        if (this.state.newKeyword !== ""){
             keywords.push(this.state.newKeyword);
 
             this.setState({
@@ -94,7 +93,6 @@ class Footer extends Component{
                 );
             } else if (this.state.addKeyword){
 
-                var message = "You added:"
                 return(
                     <div>
                         <form onSubmit={this.addKeyword}>

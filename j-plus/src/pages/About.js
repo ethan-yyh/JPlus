@@ -21,16 +21,16 @@ class About extends Component{
                         <div className="card-body">
                             <h4 className="card-title">Ethan Yao</h4>
                             <p className="card-text">5th year BBA/BSc student at Wilfrild Laurier University</p>
-                            <a href="https://github.com/ethan-yyh" target="_blank"className="card-link">Github</a>
-                            <a href="https://www.linkedin.com/in/yiheng-ethan-yao-728a63162/" target="_blank" className="card-link">Linkedin</a>
+                            <a href="https://github.com/ethan-yyh" className="card-link">Github</a>
+                            <a href="https://www.linkedin.com/in/yiheng-ethan-yao-728a63162/" className="card-link">Linkedin</a>
                         </div>
                     </div>
                     <div className="card" id="contributor-card">
                         <div className="card-body">
                             <h4 className="card-title">Leo Zhan</h4>
                             <p className="card-text">5th year BBA/BSc student at Wilfrild Laurier University</p>
-                            <a href="https://github.com/leozhan101" target="_blank" className="card-link">Github</a>
-                            <a href="https://www.linkedin.com/in/leo-zhan/" target="_blank" className="card-link">Linkedin</a>
+                            <a href="https://github.com/leozhan101" className="card-link">Github</a>
+                            <a href="https://www.linkedin.com/in/leo-zhan/" className="card-link">Linkedin</a>
                             
                         </div>
                     </div>
@@ -38,8 +38,8 @@ class About extends Component{
                         <div className="card-body">
                             <h4 className="card-title">Wayne Wang</h4>
                             <p className="card-text">5th year BBA/BSc student at Wilfrild Laurier University</p>
-                            <a href="https://github.com/zyWangWayne" target="_blank" className="card-link">Github</a>
-                            <a href="https://www.linkedin.com/in/ziyao-wang-wang1682laurier/" target="_blank" className="card-link">Linkedin</a>
+                            <a href="https://github.com/zyWangWayne" className="card-link">Github</a>
+                            <a href="https://www.linkedin.com/in/ziyao-wang-wang1682laurier/" className="card-link">Linkedin</a>
                         </div>
                     </div>
 
