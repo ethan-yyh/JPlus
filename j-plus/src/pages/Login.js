@@ -27,9 +27,11 @@ class Login extends Component{
             "password": password
         }
 
+        console.log(req)
+
         const response = await fetch(`http://localhost:9000/authenticationAPI`,{
             method: 'post',
-            header: {
+            headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(req)
