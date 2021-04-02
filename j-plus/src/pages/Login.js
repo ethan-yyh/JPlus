@@ -8,7 +8,8 @@ class Login extends Component{
     constructor(){
         super()
         this.state = {
-            firstname: "",
+            username: "",
+            firstname:"",
             login: false
         }
 
@@ -46,7 +47,9 @@ class Login extends Component{
         const data = await response.json()
 
         if(data["pass"] === true){
+            console.log("directing to dashboard")
             this.setState({
+                username: username,
                 firstname: data["firstname"],
                 login: true
             });
@@ -54,11 +57,12 @@ class Login extends Component{
             console.log("wrong password")
         }
     }
+
     render(){
         if(this.state.login === true){
             return(
                 <div>
-                    <Redirect to={`/dashboard/${this.state.firstname}`}></Redirect>
+                    <Redirect to={`/dashboard/${this.state.username}/${this.state.firstname}`}></Redirect>
                 </div>
             );
         } else {

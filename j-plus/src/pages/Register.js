@@ -13,6 +13,7 @@ class Register extends Component{
             redirect: false
         }
         this.checkUsername = this.checkUsername.bind(this)
+        this.getSkills = this.getSkills.bind(this);
     }
 
     async checkUsername(event){
@@ -59,6 +60,7 @@ class Register extends Component{
             .then(data => console.log(data)); 
 
             this.setState({
+                username: username,
                 firstname: firstname,
                 redirect: true
             });
@@ -73,7 +75,7 @@ class Register extends Component{
         if(this.state.redirect === true){
             return(
                 <div>
-                    <Redirect to={`/dashboard/${this.state.firstname}`}></Redirect>
+                    <Redirect to={`/dashboard/${this.state.username}/${this.state.firstname}`}></Redirect>
                 </div>
             );
         } else {

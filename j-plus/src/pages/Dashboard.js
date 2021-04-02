@@ -15,25 +15,42 @@ class Dashboard extends Component{
         super()
         this.state = {
             username: props.match.params.username,
-            skills: ["JavaScript","Python", "React", "Java", "Machine Learning", "C", "C++", "Cloud Computing"]
+            firstname: props.match.params.firstname,
+            skills:["Python"]
         }
 
+
         this.updateKeywords = this.updateKeywords.bind(this)
+        this.getSkills = this.getSkills.bind(this)
 
 
 
         
     }
 
+    componentDidMount(){
+        this.getSkills()
+    }
+
     updateKeywords(event){
         event.preventDefault();
 
-        var req = {
-            "skills": this.state.skills,
-            "username": "test"
+        var skills = []
+        var skillElement = document.getElementsByClassName("skill")
+
+        for (var i = 0, len = skillElement.length; i < len; i++) {
+            skills.push(skillElement[i].firstChild.nodeValue)
         }
 
-        console.log(req);
+        this.setState({
+            skills: skills
+        });
+        
+        var req = {
+            "skills": skills,
+            "username": this.state.username
+        }
+
 
         fetch('http://localhost:9000/updateSkillAPI', {
             method: 'post',
@@ -45,17 +62,46 @@ class Dashboard extends Component{
         .then(response => response.json())
         .then(data => console.log(data)); 
 
+
+    }
+
+    async getSkills(){
+
+        
+        const response = await fetch(`http://localhost:9000/retrieveSkillAPI?username=${this.state.username}`)
+        const data = await response.json()
+
+        console.log("here")
+        this.setState({
+            skills: data["skills"]
+        });
+
+        // console.log(this.state.username)
+        // console.log(this.state.firstname)
+        // console.log(this.state.skills)
+    
+
+
+
     }
 
     render(){
 
-        var user = this.state.username
+
+
+        var user = this.state.firstname
         var message = "These are they skills we captured based on your most recent resume. You can delete the ones that you think are not accurate.";
         var message2 = "Have some new skills? No worries, we got you. Add your new skills below."
         var message3 = "Let us know which locations you are interested in."
         var message4 = "You can always submit a new resume. Upload a new resume will over-write your previous upload."
 
-        var keywords = ["JavaScript","Python", "React", "Java", "Machine Learning", "C", "C++", "Cloud Computing"];
+        var keywords = this.state.skills;
+
+
+        console.log("keywords: " + keywords)
+        // if(keywords === undefined){
+        //     keywords = ["Python"]
+        // }
 
         return(
             <div>
