@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Keyword from './Keyword.js'
-import "./AddKeyword.css"
+import "./css/AddKeyword.css"
 
 class Footer extends Component{
 

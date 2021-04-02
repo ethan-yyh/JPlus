@@ -1,5 +1,5 @@
 import { React, Component } from "react"
-import "./UploadResume.css"
+import "./css/UploadResume.css"
 
 class UploadResume extends Component{
 

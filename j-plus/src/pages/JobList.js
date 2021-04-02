@@ -5,7 +5,7 @@ import Footer from '../components/Footer.js';
 import Keyword from '../components/Keyword.js';
 import AddKeyword from '../components/AddKeyword.js';
 import UploadResume from '../components/UploadResume.js';
-import './JobList.css';
+import './css/JobList.css';
 import JobCard from '../components/JobCard.js';
 
 class Dashboard extends Component{

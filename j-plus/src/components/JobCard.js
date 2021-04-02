@@ -1,5 +1,5 @@
 import {React, Component} from "react"
-import "./JobCard.css"
+import "./css/JobCard.css"
 
 class JobCard extends Component{
     constructor(){

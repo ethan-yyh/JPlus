@@ -1,7 +1,7 @@
 import { Component, React } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
-import './Login.css'
+import './css/Login.css'
 
 class Login extends Component{
     render(){

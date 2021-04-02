@@ -6,7 +6,7 @@ import Footer from '../components/Footer.js';
 import Keyword from '../components/Keyword.js';
 import AddKeyword from '../components/AddKeyword.js';
 import UploadResume from '../components/UploadResume.js';
-import './Dashboard.css';
+import './css/Dashboard.css';
 
 class Dashboard extends Component{
 

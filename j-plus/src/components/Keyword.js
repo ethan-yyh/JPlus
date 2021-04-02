@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./Keyword.css"
+import "./css/Keyword.css"
 
 class Keyword extends Component{
 

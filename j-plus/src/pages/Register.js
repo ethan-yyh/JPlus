@@ -1,7 +1,7 @@
 import { Component, React } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
-import './Register.css'
+import './css/Register.css'
 
 class Register extends Component{
     render(){
@@ -13,12 +13,12 @@ class Register extends Component{
                     <hr className="my-4"></hr>
                     <form>
                         <div className="form-group">
-                            <label for="firstname">Firstname</label>
-                            <input className="form-control" id="firstname" placeholder="Enter your firstname"></input>
+                            <label for="firstname">First Name</label>
+                            <input className="form-control" id="firstname" placeholder="Enter your first name"></input>
                         </div>
                         <div className="form-group">
-                            <label for="lastname">Lastname</label>
-                            <input className="form-control" id="lastname" placeholder="Enter your lastname"></input>
+                            <label for="lastname">Last Name</label>
+                            <input className="form-control" id="lastname" placeholder="Enter your last name"></input>
                         </div>
                         <div className="form-group">
                             <label for="username">Username</label>
