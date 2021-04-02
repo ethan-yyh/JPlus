@@ -27,9 +27,15 @@ class Login extends Component{
             "password": password
         }
 
-        console.log(req)
+        var response = await fetch(`http://localhost:9000/authenticationAPI`,{
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req)
+        })
 
-        const response = await fetch(`http://localhost:9000/authenticationAPI`,{
+        response = await fetch(`http://localhost:9000/authenticationAPI`,{
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
@@ -39,7 +45,14 @@ class Login extends Component{
 
         const data = await response.json()
 
-        console.log(data)
+        if(data["pass"] === true){
+            this.setState({
+                firstname: data["firstname"],
+                login: true
+            });
+        } else {
+            console.log("wrong password")
+        }
     }
     render(){
         if(this.state.login === true){

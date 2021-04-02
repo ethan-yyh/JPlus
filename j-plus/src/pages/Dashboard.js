@@ -1,20 +1,48 @@
 // import files
 import React, { Component } from 'react';
-// import {Link} from 'react-router-dom';
-import NavBar from '../components/NavBar.js';
+import {Link} from 'react-router-dom';
+// import NavBar from '../components/NavBar.js';
 // import Footer from '../components/Footer.js';
 import Keyword from '../components/Keyword.js';
 import AddKeyword from '../components/AddKeyword.js';
 import UploadResume from '../components/UploadResume.js';
 import './css/Dashboard.css';
+import './css/NavBar.css';
 
 class Dashboard extends Component{
 
     constructor(props){
         super()
         this.state = {
-            username: props.match.params.username
+            username: props.match.params.username,
+            keywords: ["JavaScript","Python", "React", "Java", "Machine Learning", "C", "C++", "Cloud Computing"]
         }
+
+        this.updateKeywords = this.updateKeywords.bind(this)
+
+
+
+        
+    }
+
+    updateKeywords(event){
+        event.preventDefault();
+
+        var req = {
+            "keywords": this.state.keywords,
+            "username": "test"
+        }
+
+        fetch('http://localhost:9000/updateSkillAPI', {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req)
+        })
+        .then(response => response.json())
+        .then(data => console.log(data)); 
+
     }
 
     render(){
@@ -29,7 +57,21 @@ class Dashboard extends Component{
 
         return(
             <div>
-                <NavBar page="dashboard"/>
+                <div>
+                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                        <Link to={'/'}className="navbar-brand" href="localhost:3000/" id="logo">J+</Link>
+                        <div className="collapse navbar-collapse" id="navbarColor03">
+                            <ul className="navbar-nav mr-auto">
+                                <li className="nav-item">
+                                    <Link to={`/about`} className="nav-link">About</Link>
+                                </li>
+                            </ul>
+                            <Link to={`/joblist`} className="btn btn-primary my-2 my-sm-0" onClick={this.updateKeywords}>Search Jobs</Link>
+                            
+                        </div>
+                    </nav>
+                </div>
+
                 <div className="container">
                     <h1 id="greeting-lg">Welcome back, {user}!</h1>
                     <hr className="my-4"></hr>
