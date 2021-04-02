@@ -1,6 +1,5 @@
 import { Component, React } from 'react';
 import { Link } from 'react-router-dom';
-import { resource } from '../../../../JPlus-API/app';
 import NavBar from '../components/NavBar';
 import './css/Register.css'
 
@@ -8,16 +7,55 @@ class Register extends Component{
 
     constructor(){
         super()
+        this.state = {
+            username:""
+        }
+        this.checkUsername = this.checkUsername.bind(this)
     }
 
-    checkUsername(){
+    checkUsername(event){
 
+        event.preventDefault();
         var username = document.getElementById('username').value
+
+        
+
         console.log(username)
 
+
+        // false -> user does not exist in database
+        // true -> user exists in the database, ask for a new username
         fetch(`http://localhost:9000/checkUsernameAPI?username=${username}`)
             .then(response => response.json())
+            .then(data => {this.setState({
+                username: data
+            });});
+
+        // username not available
+        if(this.state.username == true){
+            console.log('true');
+        } else if (this.state.username == false){ // username is available
+            console.log('username is valid');
+
+            var firstname = document.getElementById('firstname').value
+            var lastname = document.getElementById('lastname').value
+            var password = document.getElementById('password').value
+
+            var req = {
+                firstname: firstname,
+                lastname: lastname,
+                username: username,
+                password: password
+            }
+
+            fetch('http://localhost:9000/registerAPI', {
+                method: 'post',
+                body: JSON.stringify(req)
+            })
+            .then(response => response.json())
             .then(data => console.log(data));
+        }
+
         
 
     }
@@ -44,7 +82,7 @@ class Register extends Component{
                         </div>
                         <div className="form-group">
                             <label for="password">Password</label>
-                            <input type="password" className="form-control" id="username" placeholder="Choose a password"></input>
+                            <input type="password" className="form-control" id="password" placeholder="Choose a password"></input>
                         </div>
                         <Link to={`/login`} className="btn btn-outline-primary" id="login-btn">Login</Link>
                         <button type="submit" className="btn btn-primary" id="submit-btn" onClick={this.checkUsername}>Register</button>

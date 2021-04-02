@@ -1,10 +1,10 @@
 // import files
 import React, { Component } from 'react';
 import NavBar from '../components/NavBar.js';
-import Footer from '../components/Footer.js';
-import Keyword from '../components/Keyword.js';
-import AddKeyword from '../components/AddKeyword.js';
-import UploadResume from '../components/UploadResume.js';
+// import Footer from '../components/Footer.js';
+//import Keyword from '../components/Keyword.js';
+//import AddKeyword from '../components/AddKeyword.js';
+//import UploadResume from '../components/UploadResume.js';
 import './css/JobList.css';
 import JobCard from '../components/JobCard.js';
 

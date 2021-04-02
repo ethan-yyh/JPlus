@@ -1,8 +1,8 @@
 // import files
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import NavBar from '../components/NavBar.js';
-import Footer from '../components/Footer.js';
+// import Footer from '../components/Footer.js';
 import Keyword from '../components/Keyword.js';
 import AddKeyword from '../components/AddKeyword.js';
 import UploadResume from '../components/UploadResume.js';
