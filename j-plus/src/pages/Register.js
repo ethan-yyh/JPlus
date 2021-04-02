@@ -1,5 +1,6 @@
 import { Component, React } from 'react';
 import { Link } from 'react-router-dom';
+import { resource } from '../../../../JPlus-API/app';
 import NavBar from '../components/NavBar';
 import './css/Register.css'
 
@@ -15,7 +16,8 @@ class Register extends Component{
         console.log(username)
 
         fetch(`http://localhost:9000/checkUsernameAPI?username=${username}`)
-            .then(response => console.log(response.json()));
+            .then(response => response.json())
+            .then(data => console.log(data));
         
 
     }
