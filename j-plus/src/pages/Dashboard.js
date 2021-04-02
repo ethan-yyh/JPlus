@@ -29,9 +29,11 @@ class Dashboard extends Component{
         event.preventDefault();
 
         var req = {
-            "skills": this.state.keywords,
+            "skills": this.state.skills,
             "username": "test"
         }
+
+        console.log(req);
 
         fetch('http://localhost:9000/updateSkillAPI', {
             method: 'post',
