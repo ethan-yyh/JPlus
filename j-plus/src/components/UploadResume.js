@@ -14,8 +14,13 @@ class UploadResume extends Component{
         this.updateFileName = this.updateFileName.bind(this)
     }
 
+    componentDidMount(){
+        document.getElementById("upload-btn").disabled = true
+    }
+
     updateFileName(event){
 
+        event.preventDefault();
 
         var fullPath = document.getElementById("select-file-btn").value;
 
@@ -34,14 +39,20 @@ class UploadResume extends Component{
         }
     }
 
+
+
+
+
+
+
     render(){
         return(
             <div>
                 <form>
                     <div className="form-group">
-                        <label className="btn btn-primary" htmlFor="select-file-btn" id="select-file-btn-label" >Select File</label>
+                        <label className="btn btn-outline-primary" htmlFor="select-file-btn" id="select-file-btn-label" >Select File</label>
                         <input type="file" className="form-control-file" id="select-file-btn" onChange={this.updateFileName}></input>
-                        <button className="btn btn-outline-primary" type="submit" id="upload-btn" disabled>Upload</button>
+                        <button className="btn btn-outline-primary" type="submit" id="upload-btn">Upload</button>
                         <small className="form-text text-muted" id="file-name">You selected: {this.state.filename}</small>
                         
                     </div>

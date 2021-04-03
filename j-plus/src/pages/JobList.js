@@ -14,6 +14,7 @@ class Dashboard extends Component{
     constructor(props){
         super();
         this.state = {
+            showPage: false,
             username: props.match.params.username,
             firstname: props.match.params.firstname,
             haveSkills: false,
@@ -66,7 +67,10 @@ class Dashboard extends Component{
     displayJobCards(){
 
         if(this.state.skills.length === 0){
-            this.setState({haveSkills: false});
+            this.setState({
+                showPage: true,
+                haveSkills: false
+            });
         } else {
 
             // build request body
@@ -74,6 +78,8 @@ class Dashboard extends Component{
                 "skills": this.state.skills,
                 "locations": this.state.locations,
             }
+
+            console.log(req)
 
             // make request
             fetch(`http://localhost:9000/searchJobAPI`,{
@@ -85,7 +91,9 @@ class Dashboard extends Component{
             })
             .then(response => response.json())
             .then(data => {
+                console.log("results are" + data["results"])
                 this.setState({
+                    showPage: true,
                     jobs: data["results"],
                     haveSkills: true
                 });
@@ -103,47 +111,83 @@ class Dashboard extends Component{
 
         var user = this.state.firstname;
         var message = "Click on the ones that you are interested in. A new page will open up with more detail!";
-        var messageNoSkill = "Sorry we do not find a record of your skills in our database. You can add skills or upload your resume in the dashboard.";
+        var messageNoSkill = "Sorry we did not find a record of your skills in our database. You can add skills or upload your resume from your dashboard.";
         
-        if (this.state.haveSkills){
-            return(
-                <div>
+        if (this.state.showPage){
+            if (this.state.haveSkills){
+                return(
                     <div>
-                        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                            <Link to={'/'}className="navbar-brand" href="localhost:3000/" id="logo">J+</Link>
-                            <div className="collapse navbar-collapse" id="navbarColor03">
+                        <div>
+                            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                                <Link to={'/'}className="navbar-brand" href="localhost:3000/" id="logo">J+</Link>
+                                <div className="collapse navbar-collapse" id="navbarColor03">
+                                    
+                                    <ul className="navbar-nav mr-auto"></ul>
+                                    <Link to={'/login'} className="btn btn-outline-primary my-2 my-sm-0" id="logout">Logout</Link>
+                                    <Link to={`/dashboard/${this.state.username}/${this.state.firstname}`}className="btn btn-primary my-2 my-sm-0">Back to Dashboard</Link>
+                                    
+                                </div>
+                            </nav>
+                        </div>
+
+                        <div>
+                            <div className="container">
+                                <h1 id="greeting">Hey {user}, we found these for you!</h1>
+                                <hr className="my-4"></hr>
+                                <p className="lead" id="message">{message}</p>
                                 
-                                <ul className="navbar-nav mr-auto"></ul>
-                                <Link to={'/login'} className="btn btn-outline-primary my-2 my-sm-0" id="logout">Logout</Link>
+                                {this.state.jobs.map((job, id) => 
+                                    <React.Fragment key={id}>
+                                        <JobCard job={job}/>
+                                    </React.Fragment>
+                                )}
+                                <br></br>
+                                <small className="text-primary">Imformation are retrieved from Indeed</small>
+                                <hr className="my-4"></hr>
                                 <Link to={`/dashboard/${this.state.username}/${this.state.firstname}`}className="btn btn-primary my-2 my-sm-0">Back to Dashboard</Link>
                                 
                             </div>
-                        </nav>
+                            <div className="copyright">
+                                <p id="copyright-blk" className="lead">J+ Copyrighted</p>
+                            </div>
+                            
+                        </div>
                     </div>
-
+                );
+            } else {
+                return(
                     <div>
-                        <div className="container">
-                            <h1 id="greeting">Hey {user}, we found these for you!</h1>
-                            <hr className="my-4"></hr>
-                            <p className="lead" id="message">{message}</p>
-                            
-                            {this.state.jobs.map((job, id) => 
-                                <React.Fragment key={id}>
-                                    <JobCard job={job}/>
-                                </React.Fragment>
-                            )}
-                            <br></br>
-                            <small className="text-primary">Imformation are retrieved from Indeed</small>
-                            <hr className="my-4"></hr>
+                        <div>
+                            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                                <Link to={'/'}className="navbar-brand" href="localhost:3000/" id="logo">J+</Link>
+                                <div className="collapse navbar-collapse" id="navbarColor03">
+                                    
+                                    <ul className="navbar-nav mr-auto"></ul>
+                                    <Link to={'/login'} className="btn btn-outline-primary my-2 my-sm-0" id="logout">Logout</Link>
+                                </div>
+                            </nav>
+                        </div>
+
+                        <div>
+                            <div className="container">
+                                <h1 id="greeting">Hey {user}, tell us more about you!</h1>
+                                <hr className="my-4"></hr>
+                                <p className="lead" id="message">{messageNoSkill}</p>
+                                <hr className="my-4"></hr>
+                                
+                                <Link to={`/dashboard/${this.state.username}/${this.state.firstname}`}className="btn btn-primary my-2 my-sm-0">Back to Dashboard</Link>
+                            </div>
+                            <div className="copyright">
+                                <p id="copyright-blk" className="lead">J+ Copyrighted</p>
+                            </div>
                             
                         </div>
-                        <div className="copyright">
-                            <p id="copyright-blk" className="lead">J+ Copyrighted</p>
-                        </div>
-                        
+
+
+
                     </div>
-                </div>
-            );
+                );
+            }
         } else {
             return(
                 <div>
@@ -162,19 +206,12 @@ class Dashboard extends Component{
 
                     <div>
                         <div className="container">
-                            <h1 id="greeting">Hey {user}, tell us more about you!</h1>
-                            <hr className="my-4"></hr>
-                            <p className="lead" id="message">{messageNoSkill}</p>
                             <hr className="my-4"></hr>
                         </div>
                         <div className="copyright">
                             <p id="copyright-blk" className="lead">J+ Copyrighted</p>
-                        </div>
-                        
+                        </div>  
                     </div>
-
-
-
                 </div>
             );
         }

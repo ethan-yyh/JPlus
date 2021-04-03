@@ -86,7 +86,7 @@ class Footer extends Component{
                         <form onSubmit={this.addKeyword}>
                             <div className="form-group">
                                 <input className="form-control" type="text" id="input-field" value={this.state.newKeyword} onChange={this.handleKeywordChange} placeholder="e.g. Toronto"></input>
-                                <button className="btn btn-outline-primary" id="add-keyword-btn" type="submit">Add Location</button>
+                                <button className="btn btn-outline-warning" id="add-keyword-btn" type="submit">Add Location</button>
                             </div>
                         </form>
                     </div>
@@ -98,7 +98,7 @@ class Footer extends Component{
                         <form onSubmit={this.addKeyword}>
                             <div className="form-group">
                                 <input className="form-control" type="text" id="input-field" value={this.state.newKeyword} onChange={this.handleKeywordChange} placeholder="e.g. Toronto"></input>
-                                <button className="btn btn-outline-primary" id="add-keyword-btn" type="submit">Add Location</button>
+                                <button className="btn btn-outline-warning" id="add-keyword-btn" type="submit">Add Location</button>
                                 <br></br>
                                 {this.state.keywords.map((keyword, id) => 
                                 <React.Fragment key={id}>

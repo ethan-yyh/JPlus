@@ -182,7 +182,6 @@ class Dashboard extends Component{
                                     <ul className="navbar-nav mr-auto"></ul>
                                     <Link to={'/login'} className="btn btn-outline-primary my-2 my-sm-0" id="logout">Logout</Link>
                                     <button className="btn btn-primary my-2 my-sm-0" onClick={this.updateSkills}>Search Jobs</button>
-                                    
                                 </div>
                             </nav>
                         </div>
@@ -211,6 +210,7 @@ class Dashboard extends Component{
                             <p className="lead" id="message">{message4}</p>
                             <UploadResume/>
                             <hr className="my-4"></hr>
+                            <button className="btn btn-primary my-2 my-sm-0" onClick={this.updateSkills}>Search Jobs</button>
                         </div>
                         <div className="copyright">
                             <p id="copyright-blk" className="lead">J+ Copyrighted</p>
@@ -230,7 +230,6 @@ class Dashboard extends Component{
                                     <ul className="navbar-nav mr-auto"></ul>
                                     <Link to={'/login'} className="btn btn-outline-primary my-2 my-sm-0" id="logout">Logout</Link>
                                     <button className="btn btn-primary my-2 my-sm-0" onClick={this.updateSkills}>Search Jobs</button>
-                                    
                                 </div>
                             </nav>
                         </div>
@@ -252,6 +251,7 @@ class Dashboard extends Component{
                                 </React.Fragment>
                             )}
                             <hr className="my-4"></hr>
+                            <button className="btn btn-primary my-2 my-sm-0" onClick={this.updateSkills}>Search Jobs</button>
                             
                         </div>
                         <div className="copyright">

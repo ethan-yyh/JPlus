@@ -4,6 +4,18 @@
     margin-bottom: 10px;
 }
 
+button.skill:disabled,
+button[disabled].skill{
+  border: 1px solid #1e69eb;
+  color: #1e69eb;
+}
+
+button.location:disabled,
+button[disabled].location{
+  border: 1px solid #f29511;
+  color: #f29511;
+}
+
 #hidden{
     display: inline-block;
 }

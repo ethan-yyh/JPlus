@@ -11,6 +11,10 @@
     display: inline-block;
 }
 
+#copyright{
+    text-align: center;
+}
+
 #test{
     border: 1px solid #73AD21;
     border-radius: 25px;

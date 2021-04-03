@@ -1,6 +1,6 @@
 import { Component, React } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import NavBar from '../components/NavBar';
+// import NavBar from '../components/NavBar';
 import './css/Register.css'
 
 class Register extends Component{
@@ -139,7 +139,19 @@ class Register extends Component{
         } else {
             return(
                 <div>
-                    <NavBar page="register"/>
+                    <div>
+                        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                            <Link to={'/'}className="navbar-brand" href="localhost:3000/" id="logo">J+</Link>
+                            <div className="collapse navbar-collapse" id="navbarColor03">
+            
+                                <ul className="navbar-nav mr-auto"></ul>
+                                <Link to={`/login`} className="btn btn-outline-primary" id="nav-btn">login</Link>
+                                
+                            </div>
+                        </nav>
+                    </div>
+
+
                     <div className="container register-container">
                         <h1 id="register-title">Register</h1>
                         <hr className="my-4"></hr>
@@ -161,7 +173,6 @@ class Register extends Component{
                                 <label>Password</label>
                                 <input type="password" className="form-control" id="password" placeholder="Choose a password" onChange={this.updateState}></input>
                             </div>
-                            <Link to={`/login`} className="btn btn-outline-primary" id="login-btn">Login</Link>
                             <button type="submit" className="btn btn-primary" id="submit-btn" onClick={this.checkUsername}>Register</button>
                         </form>
                         <div id="username-warning"></div>
