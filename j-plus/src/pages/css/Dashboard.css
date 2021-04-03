@@ -3,6 +3,10 @@
     font-size: 70px;
 }
 
+#logout{
+    margin-right: 20px;
+}
+
 #search-job-button{
     display: inline-block;
 }

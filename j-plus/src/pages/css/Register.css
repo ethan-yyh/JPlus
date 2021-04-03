@@ -15,6 +15,11 @@
     right: 0px;
 }
 
+#username-warning{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 #submit-btn{
     width: 49%;
     display: inline-block;

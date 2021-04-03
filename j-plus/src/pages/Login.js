@@ -8,54 +8,122 @@ class Login extends Component{
     constructor(){
         super()
         this.state = {
+            data: "",
             username: "",
+            password:"",
             firstname:"",
             login: false
         }
 
         this.userLogin = this.userLogin.bind(this)
+        this.handleResponse = this.handleResponse.bind(this)
+        this.updateState = this.updateState.bind(this);
     }
+
+    componentDidMount(){
+        document.getElementById('login-btn').disabled = true;
+    }
+
     
-    async userLogin(event){
+    userLogin(event){
 
-        event.preventDefault();
+        event.preventDefault()
 
-        var username = document.getElementById('username').value; 
-        var password = document.getElementById('password').value;
+        console.log("clicked")
 
         var req = {
-            "username": username,
-            "password": password
+            "username": this.state.username,
+            "password": this.state.password
         }
 
-        var response = await fetch(`http://localhost:9000/authenticationAPI`,{
+        fetch(`http://localhost:9000/authenticationAPI`,{
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(req)
         })
-
-        response = await fetch(`http://localhost:9000/authenticationAPI`,{
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(req)
+        .then(response => response.json())
+        .then(data => {
+            this.setState({data: data});
+            this.handleResponse()
         })
 
-        const data = await response.json()
 
-        if(data["pass"] === true){
-            console.log("directing to dashboard")
+        
+    }
+
+    handleResponse(){
+
+
+        if(this.state.data["pass"] === true){
+            
             this.setState({
-                username: username,
-                firstname: data["firstname"],
+                firstname: this.state.data["firstname"],
                 login: true
             });
+
+            console.log("directing to dashboard")
+
         } else {
-            console.log("wrong password")
+
+            // wrong password
+            // clear input
+            // focus username field
+            document.getElementById('username').value = "";
+            document.getElementById('password').value = "";
+            document.getElementById('username').focus();
+            document.getElementById('login-btn').disabled = true;
+
+            // clear stored state
+            this.setState({
+                username: "",
+                password: ""
+            });
+
+            // render warning
+            document.getElementById('password-warning').innerHTML = 
+            `
+            <div class="alert alert-danger">
+            <strong>Warning:</strong> The password you just entered do not match our record. Please check again. If you have not registered, please register first.
+            </div>
+            `
+
+            // remove warning after 15 seconds
+            setTimeout(()=>{
+                document.getElementById('password-warning').innerHTML = ""
+            }, 15000);
+
         }
+    }
+
+    updateState(event){
+        event.preventDefault();
+
+        console.log("updating state")
+
+        // get info from DOM
+        let username = document.getElementById('username').value
+        let password = document.getElementById('password').value
+
+        // update state
+        this.setState({
+            username: username,
+            password: password
+        });
+
+        console.log("username: " + this.state.username);
+        console.log("password: " + this.state.password);
+
+        // enable login button if fileds are filled
+        if (this.state.username !== "" && this.state.password !== ""){
+            console.log("enabling login button");
+            document.getElementById('login-btn').disabled = false
+            
+        } else {
+            document.getElementById('login-btn').disabled = true
+        }
+
     }
 
     render(){
@@ -75,15 +143,16 @@ class Login extends Component{
                         <form>
                             <div className="form-group">
                                 <label>Username</label>
-                                <input className="form-control" id="username" placeholder="Enter your username"></input>
+                                <input className="form-control" id="username" placeholder="Enter your username" onChange={this.updateState}></input>
                             </div>
                             <div className="form-group">
                                 <label>Password</label>
-                                <input type="password" className="form-control" id="password" placeholder="Enter your password"></input>
+                                <input type="password" className="form-control" id="password" placeholder="Enter your password" onChange={this.updateState}></input>
                             </div>
                             <Link to={`/register`} className="btn btn-outline-primary" id="register-btn">Register</Link>
                             <button type="submit" className="btn btn-primary" id="login-btn" onClick={this.userLogin}>Login</button> 
                         </form>
+                        <div id="password-warning"></div>
                         <hr className="my-4"></hr>
                         
                         

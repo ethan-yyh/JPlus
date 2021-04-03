@@ -42,7 +42,7 @@ class Keyword extends Component{
                 return(
                     <div className="keyword" id={this.props.keyword}>
                         <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
-                            <button type="button" className="btn btn-outline-primary" id="keyword-btn" disabled>{this.props.keyword}</button>
+                            <button type="button" className="btn btn-outline-warning location" id="keyword-btn" disabled>{this.props.keyword}</button>
                             <button type="button" className="btn btn-outline-danger" onClick={this.hideComponent}>x</button>
                         </div>
                         

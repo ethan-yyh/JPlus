@@ -15,6 +15,11 @@
     right: 0px;
 }
 
+#password-warning{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 #login-btn{
     width: 48%;
     display: inline-block;
