@@ -7,7 +7,8 @@ import {Link} from 'react-router-dom';
 //import AddKeyword from '../components/AddKeyword.js';
 //import UploadResume from '../components/UploadResume.js';
 import './css/JobList.css';
-import JobCard from '../components/JobCard.js';
+// import JobCard from '../components/JobCard.js';
+import JobBoard from '../components/JobBoard.js';
 
 class Dashboard extends Component{
 
@@ -20,11 +21,11 @@ class Dashboard extends Component{
             haveSkills: false,
             skills:[],
             locations:[],
-            jobs: []
+            jobBoards: []
         }
 
         this.getLocations = this.getLocations.bind(this);
-        this.displayJobCards = this.displayJobCards.bind(this);
+        this.displayJobBoards = this.displayJobBoards.bind(this);
 
 
     }
@@ -55,16 +56,16 @@ class Dashboard extends Component{
 
                 if(Object.keys(locations).length === 0){
                     this.setState({locations: []});
-                    this.displayJobCards();
+                    this.displayJobBoards();
                 } else {
                     this.setState({locations: locations["locations"]});
-                    this.displayJobCards();
+                    this.displayJobBoards();
                 }
                     
             });
     }
 
-    displayJobCards(){
+    displayJobBoards(){
 
         if(this.state.skills.length === 0){
             this.setState({
@@ -73,36 +74,42 @@ class Dashboard extends Component{
             });
         } else {
 
-            // build request body
-            const req = {
-                "skills": this.state.skills,
-                "locations": this.state.locations,
-            }
+            // make search job call for each location
+            this.state.locations.forEach(location => {
 
-            console.log(req)
+                const req = {
+                    "skills": this.state.skills,
+                    "locations": [location],
+                }
 
-            // make request
-            fetch(`http://localhost:9000/searchJobAPI`,{
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(req)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("results are" + data["results"])
-                this.setState({
-                    showPage: true,
-                    jobs: data["results"],
-                    haveSkills: true
-                });
+                // make request
+                fetch(`http://localhost:9000/searchJobAPI`,{
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(req)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    let newJobBoards = this.state.jobBoards
 
-            })
+                    newJobBoards.push(
+                    {
+                        "location": location,
+                        "joblist" : data["results"]
+                    });
 
+                    this.setState({
+                        showPage: true,
+                        jobBoards: newJobBoards,
+                        haveSkills: true
+                    }); // end of set state
+    
+                }); // end of .then
+
+            }); // end of fetch request
         }
-        
-
     }
 
 
@@ -136,10 +143,8 @@ class Dashboard extends Component{
                                 <hr className="my-4"></hr>
                                 <p className="lead" id="message">{message}</p>
                                 
-                                {this.state.jobs.map((job, id) => 
-                                    <React.Fragment key={id}>
-                                        <JobCard job={job}/>
-                                    </React.Fragment>
+                                {this.state.jobBoards.map((jobBoard, id) => 
+                                    <JobBoard location={jobBoard["location"]} key={id} jobBoard={jobBoard["joblist"]}/>
                                 )}
                                 <br></br>
                                 <small className="text-primary">Imformation are retrieved from Indeed</small>

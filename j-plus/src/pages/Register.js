@@ -48,7 +48,7 @@ class Register extends Component{
             // focus username field
             document.getElementById('username').value = "";
             document.getElementById('username').focus();
-            document.getElementById('login-btn').disabled = true;
+            document.getElementById('submit-btn').disabled = true;
 
             // clear stored state
             this.setState({
@@ -62,11 +62,6 @@ class Register extends Component{
             <strong>Warning:</strong> This username has already been taken, pick another one.
             </div>
             `
-
-            // remove warning after 15 seconds
-            setTimeout(()=>{
-                document.getElementById('username-warning').innerHTML = ""
-            }, 15000);
 
 
         } else if (this.state.usernameExist === false){ // username is available
@@ -90,14 +85,28 @@ class Register extends Component{
                 },
                 body: JSON.stringify(req)
             })
-            .then(response => response.json())
-            .then(data => console.log(data)); 
+            .then(response => 
+                {   
+                    console.log(response);
+                    // render warning
+                    document.getElementById('username-warning').innerHTML = 
+                    `
+                    <div class="alert alert-success">
+                    <strong>Registered Successfully!</strong> You will be transferred to dashboard shortly.
+                    </div>
+                    `
+                });
 
-            this.setState({
-                username: username,
-                firstname: firstname,
-                redirect: true
-            });
+            // go to next page after 5 seconds
+            setTimeout(()=>{
+                this.setState({
+                    username: username,
+                    firstname: firstname,
+                    redirect: true
+                });
+            }, 5000);
+
+            
         }
 
         

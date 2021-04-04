@@ -40,11 +40,6 @@ class UploadResume extends Component{
     }
 
 
-
-
-
-
-
     render(){
         return(
             <div>

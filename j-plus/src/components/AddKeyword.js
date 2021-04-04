@@ -54,6 +54,7 @@ class Footer extends Component{
                             <div className="form-group">
                                 <input className="form-control" type="text" id="input-field" value={this.state.newKeyword} onChange={this.handleKeywordChange} placeholder="e.g. JavaScript"></input>
                                 <button className="btn btn-outline-primary" id="add-keyword-btn" type="submit">Add Skill</button>
+                                <small className="form-text text-muted add-keyword-instruction">Don't forget to click Add Skill.</small>
                             </div>
                         </form>
                     </div>
@@ -66,6 +67,7 @@ class Footer extends Component{
                             <div className="form-group">
                                 <input className="form-control" type="text" id="input-field" value={this.state.newKeyword} onChange={this.handleKeywordChange} placeholder="e.g. JavaScript"></input>
                                 <button className="btn btn-outline-primary" id="add-keyword-btn" type="submit">Add Skill</button>
+                                <small className="form-text text-muted add-keyword-instruction">Don't forget to click Add Skill.</small>
                                 <br></br>
                                 {this.state.keywords.map((keyword, id) => 
                                 <React.Fragment key={id}>
@@ -87,6 +89,7 @@ class Footer extends Component{
                             <div className="form-group">
                                 <input className="form-control" type="text" id="input-field" value={this.state.newKeyword} onChange={this.handleKeywordChange} placeholder="e.g. Toronto"></input>
                                 <button className="btn btn-outline-warning" id="add-keyword-btn" type="submit">Add Location</button>
+                                <small className="form-text text-muted add-keyword-instruction">Don't forget to click Add Location.</small>
                             </div>
                         </form>
                     </div>
@@ -99,6 +102,7 @@ class Footer extends Component{
                             <div className="form-group">
                                 <input className="form-control" type="text" id="input-field" value={this.state.newKeyword} onChange={this.handleKeywordChange} placeholder="e.g. Toronto"></input>
                                 <button className="btn btn-outline-warning" id="add-keyword-btn" type="submit">Add Location</button>
+                                <small className="form-text text-muted add-keyword-instruction">Don't forget to click Add Location.</small>
                                 <br></br>
                                 {this.state.keywords.map((keyword, id) => 
                                 <React.Fragment key={id}>
