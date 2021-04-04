@@ -85,14 +85,16 @@ class Login extends Component{
             document.getElementById('password-warning').innerHTML = 
             `
             <div class="alert alert-danger">
-            <strong>Warning:</strong> The password you just entered do not match our record. Please check again. If you have not registered, please register first.
+            <strong>Warning:</strong> The password you just entered do not match our record, please check again. If you have not registered, please register first.
             </div>
             `
 
-            // remove warning after 15 seconds
-            setTimeout(()=>{
-                document.getElementById('password-warning').innerHTML = ""
-            }, 15000);
+            // this could cause a problem if user successfully login within 15 seconds
+            // hence commented out
+            // // remove warning after 15 seconds
+            // setTimeout(()=>{
+            //     document.getElementById('password-warning').innerHTML = ""
+            // }, 15000);
 
         }
     }

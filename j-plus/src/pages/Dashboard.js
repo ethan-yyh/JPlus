@@ -20,7 +20,8 @@ class Dashboard extends Component{
             skills: [],
             locations: [],
             haveSkills: false,
-            showJobList: false
+            showJobList: false,
+            loaded: false
         }
 
         
@@ -77,9 +78,15 @@ class Dashboard extends Component{
         // no skills found in database
         console.log("number of skills:" + this.state.skills.length)
         if(this.state.skills.length === 0){
-            this.setState({haveSkills: false});
+            this.setState({
+                loaded: true,
+                haveSkills: false
+            });
         } else {
-            this.setState({haveSkills: true})
+            this.setState({
+                loaded: true,
+                haveSkills: true
+            })
         }
     }
 
@@ -171,98 +178,119 @@ class Dashboard extends Component{
         var message3 = "Let us know which locations you are interested in."
         var message4 = "You can always submit a new resume. Upload a new resume will over-write your previous upload."
 
+        // stay in the same page
         if(this.state.showJobList === false){
-            if(this.state.haveSkills === true){
-                return(
-                    <div>
+            
+            if(this.state.loaded === true){
+                // user have skills
+                if(this.state.haveSkills === true){
+                    return(
                         <div>
-                            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                                <Link to={'/'}className="navbar-brand" href="localhost:3000/" id="logo">J+</Link>
-                                <div className="collapse navbar-collapse" id="navbarColor03">
-                                    <ul className="navbar-nav mr-auto"></ul>
-                                    <Link to={'/login'} className="btn btn-outline-primary my-2 my-sm-0" id="logout">Logout</Link>
-                                    <button className="btn btn-primary my-2 my-sm-0" onClick={this.updateSkills}>Search Jobs</button>
-                                </div>
-                            </nav>
-                        </div>
+                            <div>
+                                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                                    <Link to={'/'}className="navbar-brand" href="localhost:3000/" id="logo">J+</Link>
+                                    <div className="collapse navbar-collapse" id="navbarColor03">
+                                        <ul className="navbar-nav mr-auto"></ul>
+                                        <Link to={'/login'} className="btn btn-outline-primary my-2 my-sm-0" id="logout">Logout</Link>
+                                        <button className="btn btn-primary my-2 my-sm-0" onClick={this.updateSkills}>Search Jobs</button>
+                                    </div>
+                                </nav>
+                            </div>
 
-                        <div className="container">
-                            <h1 id="greeting-lg">Welcome back, {user}!</h1>
-                            <hr className="my-4"></hr>
-                            <p className="lead" id="message">{message}</p>
-                            {this.state.skills.map((keyword, id) => 
-                                <React.Fragment key={id}>
-                                    <Keyword keyword={keyword} type="skill"/>
-                                </React.Fragment>
-                            )}
-                            <hr className="my-4"></hr>
-                            <p className="lead" id="message">{message2}</p>
-                            <AddKeyword type="skill"/>
-                            <hr className="my-4"></hr>
-                            <p className="lead" id="message">{message3}</p>
-                            <AddKeyword type="location"/>
-                            {this.state.locations.map((keyword, id) => 
-                                <React.Fragment key={id}>
-                                    <Keyword keyword={keyword} type="location"/>
-                                </React.Fragment>
-                            )}
-                            <hr className="my-4"></hr>
-                            <p className="lead" id="message">{message4}</p>
-                            <UploadResume/>
-                            <hr className="my-4"></hr>
-                            <button className="btn btn-primary my-2 my-sm-0" onClick={this.updateSkills}>Search Jobs</button>
-                        </div>
-                        <div className="copyright">
-                            <p id="copyright-blk" className="lead">J+ Copyrighted</p>
-                        </div>
-                        
-                    </div>
-                );
-            } else {
-
-                return(
-                    <div>
-                        <div>
-                            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                                <Link to={'/'}className="navbar-brand" href="localhost:3000/" id="logo">J+</Link>
-                                <div className="collapse navbar-collapse" id="navbarColor03">
-                
-                                    <ul className="navbar-nav mr-auto"></ul>
-                                    <Link to={'/login'} className="btn btn-outline-primary my-2 my-sm-0" id="logout">Logout</Link>
-                                    <button className="btn btn-primary my-2 my-sm-0" onClick={this.updateSkills}>Search Jobs</button>
-                                </div>
-                            </nav>
-                        </div>
-
-                        <div className="container">
-                            <h1 id="greeting-lg">Hi, {user}!</h1>
-                            <hr className="my-4"></hr>
-                            <p className="lead" id="message">{messageNoSkill}</p>
-                            <UploadResume/>
-                            <hr className="my-4"></hr>
-                            <p className="lead" id="message">{message2NoSKill}</p>
-                            <AddKeyword type="skill"/>
-                            <hr className="my-4"></hr>
-                            <p className="lead" id="message">{message3}</p>
-                            <AddKeyword type="location"/>
-                            {this.state.locations.map((keyword, id) => 
-                                <React.Fragment key={id}>
-                                    <Keyword keyword={keyword} type="location"/>
-                                </React.Fragment>
-                            )}
-                            <hr className="my-4"></hr>
-                            <button className="btn btn-primary my-2 my-sm-0" onClick={this.updateSkills}>Search Jobs</button>
+                            <div className="container">
+                                <h1 id="greeting-lg">Welcome back, {user}!</h1>
+                                <hr className="my-4"></hr>
+                                <p className="lead" id="message">{message}</p>
+                                {this.state.skills.map((keyword, id) => 
+                                    <React.Fragment key={id}>
+                                        <Keyword keyword={keyword} type="skill"/>
+                                    </React.Fragment>
+                                )}
+                                <hr className="my-4"></hr>
+                                <p className="lead" id="message">{message2}</p>
+                                <AddKeyword type="skill"/>
+                                <hr className="my-4"></hr>
+                                <p className="lead" id="message">{message3}</p>
+                                <AddKeyword type="location"/>
+                                {this.state.locations.map((keyword, id) => 
+                                    <React.Fragment key={id}>
+                                        <Keyword keyword={keyword} type="location"/>
+                                    </React.Fragment>
+                                )}
+                                <hr className="my-4"></hr>
+                                <p className="lead" id="message">{message4}</p>
+                                <UploadResume/>
+                                <hr className="my-4"></hr>
+                                <button className="btn btn-primary my-2 my-sm-0" onClick={this.updateSkills}>Search Jobs</button>
+                            </div>
+                            <div className="copyright">
+                                <p id="copyright-blk" className="lead">J+ Copyrighted</p>
+                            </div>
                             
                         </div>
-                        <div className="copyright">
-                            <p id="copyright-blk" className="lead">J+ Copyrighted</p>
-                        </div>
-                        
-                    </div>
-                );
+                    );
+                } else {
 
+                    return(
+                        <div>
+                            <div>
+                                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                                    <Link to={'/'}className="navbar-brand" href="localhost:3000/" id="logo">J+</Link>
+                                    <div className="collapse navbar-collapse" id="navbarColor03">
+                    
+                                        <ul className="navbar-nav mr-auto"></ul>
+                                        <Link to={'/login'} className="btn btn-outline-primary my-2 my-sm-0" id="logout">Logout</Link>
+                                        <button className="btn btn-primary my-2 my-sm-0" onClick={this.updateSkills}>Search Jobs</button>
+                                    </div>
+                                </nav>
+                            </div>
+
+                            <div className="container">
+                                <h1 id="greeting-lg">Hi, {user}!</h1>
+                                <hr className="my-4"></hr>
+                                <p className="lead" id="message">{messageNoSkill}</p>
+                                <UploadResume/>
+                                <hr className="my-4"></hr>
+                                <p className="lead" id="message">{message2NoSKill}</p>
+                                <AddKeyword type="skill"/>
+                                <hr className="my-4"></hr>
+                                <p className="lead" id="message">{message3}</p>
+                                <AddKeyword type="location"/>
+                                {this.state.locations.map((keyword, id) => 
+                                    <React.Fragment key={id}>
+                                        <Keyword keyword={keyword} type="location"/>
+                                    </React.Fragment>
+                                )}
+                                <hr className="my-4"></hr>
+                                <button className="btn btn-primary my-2 my-sm-0" onClick={this.updateSkills}>Search Jobs</button>
+                                
+                            </div>
+                            <div className="copyright">
+                                <p id="copyright-blk" className="lead">J+ Copyrighted</p>
+                            </div>
+                            
+                        </div>
+                    );
+
+                }
+            } else if (this.state.loaded === false){
+
+                return(
+                    <div>
+                        <div>
+                            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                                <Link to={'/'}className="navbar-brand" href="localhost:3000/" id="logo">J+</Link>
+                                <div className="collapse navbar-collapse" id="navbarColor03">
+                                    <ul className="navbar-nav mr-auto"></ul>
+                                    <Link to={'/login'} className="btn btn-outline-primary my-2 my-sm-0" id="logout">Logout</Link>
+                                    <button className="btn btn-primary my-2 my-sm-0" onClick={this.updateSkills}>Search Jobs</button>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                )
             }
-        } else {
+        } else if (this.state.showJobList === true){
             return(
                 <div>
                     <Redirect to={`/joblist/${this.state.username}/${this.state.firstname}`}></Redirect>

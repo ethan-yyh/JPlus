@@ -175,7 +175,7 @@ class Dashboard extends Component{
 
                         <div>
                             <div className="container">
-                                <h1 id="greeting">Hey {user}, tell us more about you!</h1>
+                                <h1 id="greeting">{user}, tell us more about you!</h1>
                                 <hr className="my-4"></hr>
                                 <p className="lead" id="message">{messageNoSkill}</p>
                                 <hr className="my-4"></hr>
@@ -211,6 +211,7 @@ class Dashboard extends Component{
 
                     <div>
                         <div className="container">
+                            <h1 id="greeting-lg">Loading...</h1>
                             <hr className="my-4"></hr>
                         </div>
                         <div className="copyright">
