@@ -71,11 +71,11 @@ class Dashboard extends Component{
                     this.displayLabel();
                 } else {
                     console.log("Locations: " + locations["locations"]);
-                    if(typeof locations["locations"] === 'string'){
+                    if(typeof(locations["locations"]) === "String"){
                         console.log("Locations is read as String, converting to array...")
                         this.setState({locations: JSON.parse(locations["locations"])});
                     } else {
-                        console.log("Locations is properly read as array")
+                        console.log("Locations is properly read as array.")
                         this.setState({locations: locations["locations"]});
                     }
                     this.displayLabel();
