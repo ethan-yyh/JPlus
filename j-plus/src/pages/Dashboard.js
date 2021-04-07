@@ -265,7 +265,7 @@ class Dashboard extends Component{
                                 <h1 id="greeting-lg">Hi, {user}!</h1>
                                 <hr className="my-4"></hr>
                                 <p className="lead" id="message">{messageNoSkill}</p>
-                                <UploadResume/>
+                                <UploadResume username={this.state.username}/>
                                 <hr className="my-4"></hr>
                                 <p className="lead" id="message">{message2NoSKill}</p>
                                 <AddKeyword type="skill"/>

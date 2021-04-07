@@ -60,8 +60,11 @@ class UploadResume extends Component{
 
         document.getElementById('file-uploaded-successfully').innerHTML = 
             `
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+            <div id="file-uploaded-successfully">
+                <p className="lead">Uploading...(this may take up to 1 minute)</p>
+                <div className="progress">
+                    <div className="progress-bar progress-bar-animated progress-bar-striped w-100 bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
             </div>
             `
 
@@ -93,14 +96,7 @@ class UploadResume extends Component{
                         <label className="btn btn-outline-primary" htmlFor="select-file-btn" id="select-file-btn-label" >Select File</label>
                         <input type="file" className="form-control-file" id="select-file-btn" onChange={this.updateFileName}></input>
                         <button className="btn btn-outline-primary" type="submit" id="upload-btn">Upload</button>
-                        <small className="form-text text-muted" id="file-name">You selected: {this.state.filename}</small>
-                        <br></br>
-                        <div id="file-uploaded-successfully">
-                        <div className="progress">
-                            <div className="progress-bar progress-bar-animated progress-bar-striped w-100 bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        </div>
-                        
+                        <small className="form-text text-muted" id="file-name">You selected: {this.state.filename}</small>            
                     </div>
                 </form>
             </div>
