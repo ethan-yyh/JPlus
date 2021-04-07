@@ -60,12 +60,10 @@ class UploadResume extends Component{
 
         document.getElementById('file-uploaded-successfully').innerHTML = 
             `
-            <div id="file-uploaded-successfully">
                 <p className="lead">Uploading...(this may take up to 1 minute)</p>
                 <div className="progress">
                     <div className="progress-bar progress-bar-animated progress-bar-striped w-100 bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-            </div>
             `
 
         fetch('http://localhost:9000/uploadAPI', {
@@ -96,7 +94,8 @@ class UploadResume extends Component{
                         <label className="btn btn-outline-primary" htmlFor="select-file-btn" id="select-file-btn-label" >Select File</label>
                         <input type="file" className="form-control-file" id="select-file-btn" onChange={this.updateFileName}></input>
                         <button className="btn btn-outline-primary" type="submit" id="upload-btn">Upload</button>
-                        <small className="form-text text-muted" id="file-name">You selected: {this.state.filename}</small>            
+                        <small className="form-text text-muted" id="file-name">You selected: {this.state.filename}</small>  
+                        <div id="file-uploaded-successfully"></div>          
                     </div>
                 </form>
             </div>
