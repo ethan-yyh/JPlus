@@ -57,14 +57,20 @@ class Dashboard extends Component{
 
     getLocations(){
 
+        console.log("Getting Locations...")
+
         fetch(`http://localhost:9000/retrieveLocationAPI?username=${this.state.username}`)
             .then(response=>response.json())
             .then(locations => {
 
+                console.log("Locations: " + locations)
+
                 if(Object.keys(locations).length === 0){
+                    console.log("This user does not have locations in database.")
                     this.setState({locations: []});
                     this.displayLabel();
                 } else {
+                    console.log("Locations: " + locations["locations"])
                     this.setState({locations: locations["locations"]});
                     this.displayLabel();
                 }
