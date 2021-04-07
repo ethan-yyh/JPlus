@@ -52,9 +52,10 @@ class UploadResume extends Component{
 
         console.log("upload file called.. ")
         console.log("files: " + input.files[0])
-        
+
         var formData = new FormData()
         formData.append('file', input.files[0])
+        formData.append('username', this.props.username)
 
         fetch('http://localhost:9000/uploadAPI', {
             method: 'POST',

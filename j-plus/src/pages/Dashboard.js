@@ -235,7 +235,7 @@ class Dashboard extends Component{
                                 )}
                                 <hr className="my-4"></hr>
                                 <p className="lead" id="message">{message4}</p>
-                                <UploadResume/>
+                                <UploadResume username={this.state.username}/>
                                 <hr className="my-4"></hr>
                                 <button className="btn btn-primary my-2 my-sm-0" onClick={this.updateSkills}>Search Jobs</button>
                             </div>
