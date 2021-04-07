@@ -1,12 +1,10 @@
 #welcome-message{
-    margin-top: 15%;
-    height: 100%;
+    padding-top: 15%;
     text-align: left;
     padding-left: 10%;
 }
 
 #home-page{
-    height: 90%;
     width: 100%;
     position: fixed;
     background-color: white;

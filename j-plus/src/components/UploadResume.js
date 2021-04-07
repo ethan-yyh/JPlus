@@ -55,7 +55,15 @@ class UploadResume extends Component{
 
         var formData = new FormData()
         formData.append('file', input.files[0])
+        console.log("calling upload API with username: " + this.props.username)
         formData.append('username', this.props.username)
+
+        document.getElementById('file-uploaded-successfully').innerHTML = 
+            `
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+            </div>
+            `
 
         fetch('http://localhost:9000/uploadAPI', {
             method: 'POST',
@@ -87,7 +95,12 @@ class UploadResume extends Component{
                         <button className="btn btn-outline-primary" type="submit" id="upload-btn">Upload</button>
                         <small className="form-text text-muted" id="file-name">You selected: {this.state.filename}</small>
                         <br></br>
-                        <div id="file-uploaded-successfully"></div>
+                        <div id="file-uploaded-successfully">
+                        <div className="progress">
+                            <div className="progress-bar progress-bar-animated progress-bar-striped w-100 bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        </div>
+                        
                     </div>
                 </form>
             </div>
