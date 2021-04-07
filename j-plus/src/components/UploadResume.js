@@ -60,10 +60,9 @@ class UploadResume extends Component{
 
         document.getElementById('file-uploaded-successfully').innerHTML = 
             `
-                <p className="lead">Uploading...(this may take up to 1 minute)</p>
-                <div className="progress">
-                    <div className="progress-bar progress-bar-animated progress-bar-striped w-100 bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
+            <div class="alert alert-warning">
+            <strong>Uploading...</strong> Your file is being uploaded. This may take up to 1 minute.
+            </div>
             `
 
         fetch('http://localhost:9000/uploadAPI', {
@@ -97,6 +96,7 @@ class UploadResume extends Component{
                         <small className="form-text text-muted" id="file-name">You selected: {this.state.filename}</small>  
                         <div id="file-uploaded-successfully"></div>          
                     </div>
+                    
                 </form>
             </div>
         );
