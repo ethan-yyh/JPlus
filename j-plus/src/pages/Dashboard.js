@@ -70,8 +70,14 @@ class Dashboard extends Component{
                     this.setState({locations: []});
                     this.displayLabel();
                 } else {
-                    console.log("Locations: " + locations["locations"])
-                    this.setState({locations: locations["locations"]});
+                    console.log("Locations: " + locations["locations"]);
+                    if(typeof locations["locations"] === 'string'){
+                        console.log("Locations is read as String, converting to array...")
+                        this.setState({locations: JSON.parse(locations["locations"])});
+                    } else {
+                        console.log("Locations is properly read as array")
+                        this.setState({locations: locations["locations"]});
+                    }
                     this.displayLabel();
                 }
                 
@@ -174,7 +180,7 @@ class Dashboard extends Component{
 
     render(){
 
-
+        console.log("in render(): " + typeof(this.state.locations))
 
         var user = this.state.firstname
         var message = "These are the keywords we captured based on your most recent resume/update. You can delete the ones that you think are not accurate.";

@@ -46,14 +46,19 @@ class UploadResume extends Component{
 
         event.preventDefault();
 
+        
+
         var input = document.querySelector('input[type="file"]')
 
         console.log("upload file called.. ")
         console.log("files: " + input.files[0])
+        
+        var formData = new FormData()
+        formData.append('file', input.files[0])
 
         fetch('http://localhost:9000/uploadAPI', {
             method: 'POST',
-            body: input.files[0]
+            body: formData
         })
         .then(response => {
             console.log(response);
