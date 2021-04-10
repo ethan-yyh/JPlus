@@ -1,11 +1,11 @@
+/**
+ * This class renders the JobList page
+ * This page is made up of several job boards, each contains several job cards
+ */
+
 // import files
 import React, { Component } from 'react';
-//import NavBar from '../components/NavBar.js';
 import {Link} from 'react-router-dom';
-// import Footer from '../components/Footer.js';
-//import Keyword from '../components/Keyword.js';
-//import AddKeyword from '../components/AddKeyword.js';
-//import UploadResume from '../components/UploadResume.js';
 import './css/JobList.css';
 // import JobCard from '../components/JobCard.js';
 import JobBoard from '../components/JobBoard.js';
@@ -15,11 +15,11 @@ class Dashboard extends Component{
     constructor(props){
         super();
         this.state = {
-            showPage: false,
-            username: props.match.params.username,
-            firstname: props.match.params.firstname,
-            haveSkills: false,
-            skills:[],
+            showPage: false, // show page if information are all loaded
+            username: props.match.params.username, // get username from URL
+            firstname: props.match.params.firstname, // get firstname from URL
+            haveSkills: false, // does this user have any skill in our database?
+            skills:[], //
             locations:[],
             jobBoards: []
         }
@@ -30,8 +30,10 @@ class Dashboard extends Component{
 
     }
 
+    // get skills from database
     componentDidMount(){
 
+        // make request
         fetch(`http://localhost:9000/retrieveSkillAPI?username=${this.state.username}`)
             .then(response=>response.json())
             .then(skills => {
@@ -48,8 +50,10 @@ class Dashboard extends Component{
             });
     }
 
+    // get locations from database
     getLocations(){
 
+        // make request
         fetch(`http://localhost:9000/retrieveLocationAPI?username=${this.state.username}`)
             .then(response=>response.json())
             .then(locations => {
@@ -65,6 +69,7 @@ class Dashboard extends Component{
             });
     }
 
+    // display job boards
     displayJobBoards(){
 
         if(this.state.skills.length === 0){
@@ -116,11 +121,15 @@ class Dashboard extends Component{
 
     render(){
 
+        // initialize vars
         var user = this.state.firstname;
         var message = "Click on the ones that you are interested in. A new page will open up with more detail!";
         var messageNoSkill = "Sorry we did not find a record of your skills in our database. You can add skills or upload your resume from your dashboard.";
         
+        // information all loaded
         if (this.state.showPage){
+
+            // if user has skills
             if (this.state.haveSkills){
                 return(
                     <div>
@@ -159,7 +168,7 @@ class Dashboard extends Component{
                         </div>
                     </div>
                 );
-            } else {
+            } else { // if user has no skills
                 return(
                     <div>
                         <div>
@@ -193,7 +202,7 @@ class Dashboard extends Component{
                     </div>
                 );
             }
-        } else {
+        } else { // information are still being loaded
             return(
                 <div>
                     <div>

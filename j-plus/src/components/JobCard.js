@@ -1,3 +1,8 @@
+/**
+ * This class renders a job card for each item in job board
+ * job card contains information relating to each job including company name, city, province, job title and job description 
+ */
+
 import {React, Component} from "react";
 import "./css/JobCard.css"
 
@@ -5,13 +10,13 @@ class JobCard extends Component{
     constructor(){
         super();
 
+        // bind methods
         this.showCard = this.showCard.bind(this);
         
     }
 
+    // open up a new page that directs to corresponding job link in Indeed
     showCard(){
-
-        // open up a new page
         window.open(this.props.job.url, "_blank");
     }
 

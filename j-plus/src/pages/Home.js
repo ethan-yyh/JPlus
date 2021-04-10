@@ -1,3 +1,7 @@
+/**
+ * This class renders the Home page
+ */
+
 // import files
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
@@ -9,9 +13,9 @@ import './css/Home.css';
 class Home extends Component{
     render(){
 
+        // initialize messages
         var message = "Job hunting made easy.";
         var header = "Welcome to J+";
-
 
         return(
             <div id="home-page">

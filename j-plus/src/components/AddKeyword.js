@@ -1,33 +1,42 @@
+/** 
+ * This class renders the sections in dashboard where users can input skills and locations
+*/
+
 import React, { Component } from 'react';
 import Keyword from './Keyword.js'
 import "./css/AddKeyword.css"
 
-class Footer extends Component{
+class AddKeyword extends Component{
 
     constructor(){
         super();
 
+        // setup default states
         this.state={
-            newKeyword: '',
-            addKeyword: false,
-            keywords: []
+            newKeyword: '', // keep track of users input
+            addKeyword: false, // if user have clicked add button
+            keywords: [] // store users input
         };
 
+        // bind methods
         this.addKeyword = this.addKeyword.bind(this);
         this.handleKeywordChange = this.handleKeywordChange.bind(this)
 
     }
 
+    // read users input as they type
     handleKeywordChange(event){
         this.setState({newKeyword: event.target.value});
     }
 
+    // when users click the add button
     addKeyword(event){
         
         event.preventDefault()
         
         var keywords = this.state.keywords;
 
+        // reject input if its empty
         if (this.state.newKeyword !== ""){
             keywords.push(this.state.newKeyword);
 
@@ -35,11 +44,8 @@ class Footer extends Component{
                 addKeyword: true,
                 keywords: keywords,
                 newKeyword: ''
-            });
-
-            
+            });            
         }
-
     }
 
     render(){
@@ -47,6 +53,7 @@ class Footer extends Component{
         // render add skill keywords
         if(this.props.type === "skill"){
 
+            // if no skill have been added
             if (!this.state.addKeyword){
                 return(
                     <div>
@@ -59,7 +66,7 @@ class Footer extends Component{
                         </form>
                     </div>
                 );
-            } else if (this.state.addKeyword){
+            } else if (this.state.addKeyword){ // if at least one skill have been added
 
                 return(
                     <div>
@@ -82,6 +89,7 @@ class Footer extends Component{
 
         } else if (this.props.type === "location"){ // render add location keywords
 
+            // if no location have been added
             if (!this.state.addKeyword){
                 return(
                     <div>
@@ -94,7 +102,7 @@ class Footer extends Component{
                         </form>
                     </div>
                 );
-            } else if (this.state.addKeyword){
+            } else if (this.state.addKeyword){ // if at least one location have been added
 
                 return(
                     <div>
@@ -118,4 +126,4 @@ class Footer extends Component{
     }
 }
 
-export default Footer
+export default AddKeyword

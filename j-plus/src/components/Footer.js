@@ -1,3 +1,7 @@
+/**
+ * This class renders a footer at the bottom of the page
+ */
+
 import React, { Component } from 'react';
 import "./css/Footer.css"
 

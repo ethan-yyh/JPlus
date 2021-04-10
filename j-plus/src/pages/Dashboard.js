@@ -1,8 +1,12 @@
+/**
+ * This class renders the dashboard page
+ * on this page, user can view and modify their keywords
+ * they can also upload resume to keyword extraction
+ */
+
 // import files
 import React, { Component } from 'react';
 import {Link, Redirect} from 'react-router-dom';
-// import NavBar from '../components/NavBar.js';
-// import Footer from '../components/Footer.js';
 import Keyword from '../components/Keyword.js';
 import AddKeyword from '../components/AddKeyword.js';
 import UploadResume from '../components/UploadResume.js';
@@ -13,18 +17,19 @@ class Dashboard extends Component{
 
     constructor(props){
         super()
-    
+        
+        // initialize states
         this.state = {
-            username: props.match.params.username,
-            firstname: props.match.params.firstname,
-            skills: [],
-            locations: [],
-            haveSkills: false,
-            showJobList: false,
-            loaded: false
+            username: props.match.params.username, // get username from URL
+            firstname: props.match.params.firstname, // get username from firstname
+            skills: [], // stores skill lables on the page
+            locations: [], // stores location lables on the page
+            haveSkills: false, // does the user have any skill in database?
+            showJobList: false, // directs to job list page if this state is true
+            loaded: false // make sure information is all loaded to prevent page refreshing
         }
 
-        
+        // bind methods
         this.getLocations = this.getLocations.bind(this);
         this.displayLabel = this.displayLabel.bind(this);
         this.updateSkills = this.updateSkills.bind(this);
@@ -35,9 +40,10 @@ class Dashboard extends Component{
         
     }
 
+    // load skills from database
     componentDidMount(){
 
-    
+        // make a get request to retrieveSkillAPI
         fetch(`http://localhost:9000/retrieveSkillAPI?username=${this.state.username}`)
             .then(response=>response.json())
             .then(skills => {
@@ -55,10 +61,12 @@ class Dashboard extends Component{
  
     }
 
+    // load locations from database
     getLocations(){
 
         console.log("Getting Locations...")
 
+        // make a get request to retrieveLocationAPI
         fetch(`http://localhost:9000/retrieveLocationAPI?username=${this.state.username}`)
             .then(response=>response.json())
             .then(locations => {
@@ -71,6 +79,8 @@ class Dashboard extends Component{
                     this.displayLabel();
                 } else {
                     console.log("Locations: " + locations["locations"]);
+                    
+                    // sometimes locations will be read as string, we need to handle it manually
                     if(typeof locations["locations"] === "string"){
                         console.log("Locations is read as String, converting to array...")
                         
@@ -89,6 +99,7 @@ class Dashboard extends Component{
             });
     }
 
+    // display skill and location labels
     displayLabel(){
 
         // no skills found in database
@@ -184,8 +195,7 @@ class Dashboard extends Component{
 
     render(){
 
-        console.log("in render(): " + typeof(this.state.locations))
-
+        // initialize messages
         var user = this.state.firstname
         var message = "These are the keywords we captured based on your most recent resume/update. You can delete the ones that you think are not accurate.";
         var messageNoSkill = "Start by uploading your resume or adding skills in the following section."

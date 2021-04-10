@@ -1,6 +1,9 @@
+/**
+ * This class renders the Register page 
+ */
+
 import { Component, React } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-// import NavBar from '../components/NavBar';
 import './css/Register.css'
 
 class Register extends Component{
@@ -8,20 +11,24 @@ class Register extends Component{
     constructor(){
         super()
         this.state = {
-            firstname: "",
-            lastname: "",
-            username: "",
-            password: "",
+            firstname: "", // keep track of users firstname
+            lastname: "", // keep track of users lastname
+            username: "", // keep track of users username
+            password: "", // keep track of users password
             usernameExist: true,
             redirect: false
         }
+
+        // bind methods
         this.updateState = this.updateState.bind(this);
         this.checkUsername = this.checkUsername.bind(this);
     }
 
+    // disable register button
     componentDidMount(){
         document.getElementById('submit-btn').disabled = true;
     }
+
 
     async checkUsername(event){
 
@@ -104,15 +111,13 @@ class Register extends Component{
                     firstname: firstname,
                     redirect: true
                 });
-            }, 5000);
+            }, 4000);
 
             
         }
-
-        
-
     }
 
+    // update state as user types
     updateState(event){
         event.preventDefault()
 

@@ -1,3 +1,9 @@
+/**
+ * This class renders a component for each keyword in dashboard
+ * this class is used for both displaying keywords at the top of dashboad 
+ * and keywords under each add keyword / location section 
+ */
+
 import React, { Component } from 'react';
 import "./css/Keyword.css"
 
@@ -6,24 +12,26 @@ class Keyword extends Component{
     constructor(){
         super();
         this.state = {
-            show: true
+            show: true // keep track of the visibility of this component
         }
+
+        // bind methods
         this.hideComponent = this.hideComponent.bind(this);
     }
 
+    // set this component to invisible
     hideComponent(){
         this.setState({
             show: false
         });
-
-        // need to update database
-        // remove(this.props.keyword)
     }
+
     render(){
 
         // add blue label for skill keyword
         if(this.props.type === "skill"){
 
+            // if this component is visible
             if (this.state.show){
                 return(
                     <div className="keyword" id={this.props.keyword}>
@@ -34,10 +42,13 @@ class Keyword extends Component{
                         
                     </div>
                 );
-            } else if (!this.state.show){
+            } else if (!this.state.show){ // if not visible, then not render it
                 return(<div id="hidden"></div>);
             }
+
         } else if (this.props.type === "location"){ // add dark blue label for location keyword
+
+            // if this component is visible
             if (this.state.show){
                 return(
                     <div className="keyword" id={this.props.keyword}>
@@ -48,7 +59,7 @@ class Keyword extends Component{
                         
                     </div>
                 );
-            } else if (!this.state.show){
+            } else if (!this.state.show){ // if not visible, then not render it
                 return(<div id="hidden"></div>);
             }
         }

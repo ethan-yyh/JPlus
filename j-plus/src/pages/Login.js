@@ -1,6 +1,8 @@
+/**
+ * This class renders the Login page
+ */
 import { Component, React } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-// import NavBar from '../components/NavBar';
 import './css/Login.css'
 
 class Login extends Component{
@@ -8,23 +10,25 @@ class Login extends Component{
     constructor(){
         super()
         this.state = {
-            data: "",
-            username: "",
-            password:"",
-            firstname:"",
-            login: false
+            data: "", // response returned from backend
+            username: "", // keep track of username input by user
+            password:"", // keep track of password input by user
+            firstname:"", // get firstname from database if password is valid
+            login: false // goes to dashboard if login is true
         }
 
+        // bind methods
         this.userLogin = this.userLogin.bind(this)
         this.handleResponse = this.handleResponse.bind(this)
         this.updateState = this.updateState.bind(this);
     }
 
+    // disable login button 
     componentDidMount(){
         document.getElementById('login-btn').disabled = true;
     }
 
-    
+    // user has clicked the login button
     userLogin(event){
 
         event.preventDefault()
@@ -36,6 +40,7 @@ class Login extends Component{
             "password": this.state.password
         }
 
+        // make authentication request
         fetch(`http://localhost:9000/authenticationAPI`,{
             method: 'post',
             headers: {
@@ -53,6 +58,8 @@ class Login extends Component{
         
     }
 
+
+    // handle response from backend
     handleResponse(){
 
 
@@ -88,14 +95,6 @@ class Login extends Component{
             <strong>Warning:</strong> The password you just entered do not match our record, please check again. If you have not registered, please register first.
             </div>
             `
-
-            // this could cause a problem if user successfully login within 15 seconds
-            // hence commented out
-            // // remove warning after 15 seconds
-            // setTimeout(()=>{
-            //     document.getElementById('password-warning').innerHTML = ""
-            // }, 15000);
-
         }
     }
 
@@ -114,8 +113,6 @@ class Login extends Component{
             password: password
         });
 
-        console.log("username: " + this.state.username);
-        console.log("password: " + this.state.password);
 
         // enable login button if fileds are filled
         if (this.state.username !== "" && this.state.password !== ""){
@@ -129,13 +126,13 @@ class Login extends Component{
     }
 
     render(){
-        if(this.state.login === true){
+        if(this.state.login === true){ // authentication successful, directing to dashboard
             return(
                 <div>
                     <Redirect to={`/dashboard/${this.state.username}/${this.state.firstname}`}></Redirect>
                 </div>
             );
-        } else {
+        } else { // still on login page
             return(
                 <div>
                     <div>

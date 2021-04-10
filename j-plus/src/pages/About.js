@@ -1,3 +1,8 @@
+/**
+ * This class renders the about page
+ * containing a brief description of JPlus and contributors
+ */
+
 import { React, Component } from 'react';
 import NavBar from '../components/NavBar';
 import './css/About.css'
